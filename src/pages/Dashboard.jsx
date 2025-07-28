@@ -44,7 +44,7 @@ const Dashboard = () => {
           <>
             {/* Backdrop */}
             <div 
-              className="lg:hidden fixed inset-0 z-40 bg-black bg-opacity-50 transition-opacity"
+              className="lg:hidden fixed inset-0 z-40  bg-opacity-50 transition-opacity"
               onClick={closeSidebar}
               aria-hidden="true"
             />
@@ -90,9 +90,9 @@ const Dashboard = () => {
             </button>
             
             {/* Mobile Logo/Brand (optional) */}
-            <div className="font-semibold text-lg text-gray-900">
+            {/* <div className="font-semibold text-lg text-gray-900">
               Dashboard
-            </div>
+            </div> */}
             
             {/* Mobile action buttons (optional) */}
             <div className="w-6 h-6"></div> {/* Spacer for centering */}

@@ -3,8 +3,10 @@ import { CiSettings } from "react-icons/ci";
 import { MdNotificationsNone } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { LuUser } from "react-icons/lu";
+// import { useTheme } from '../../hooks/useTheme';
 
 const Header = () => {
+  // const { theme, toggleTheme } = useTheme();
   return (
     <div className="flex flex-wrap items-center px-6 py-4 shadow-md bg-white">
       
