@@ -1,66 +1,68 @@
 import React from 'react';
 import { User } from 'lucide-react';
 import Button from './Button';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
 
-const users = [
-  {
-    name: "John Smith", 
-    email: "john.smith@ihuza.com", 
-    role: "Admin", 
-    status: "Active", 
-    lastLogin: "2 hours ago",
-  },
-  {
-    name: "Sarah Johnson", 
-    email: "sarah.j@ihuza.com", 
-    role: "Manager", 
-    status: "Active", 
-    lastLogin: "5 hours ago",
-  },
-  {
-    name: "Michael Brown", 
-    email: "m.brown@ihuza.com", 
-    role: "Staff", 
-    status: "Active", 
-    lastLogin: "1 day ago",
-  },
-  {
-    name: "Emily Davis", 
-    email: "emily.d@ihuza.com", 
-    role: "Staff", 
-    status: "Inactive", 
-    lastLogin: "3 days ago",
-  },
-  {
-    name: "David Wilson", 
-    email: "d.wilson@ihuza.com", 
-    role: "Staff", 
-    status: "Active", 
-    lastLogin: "6 hours ago",
-  },
-  {
-    name: "Lisa Anderson", 
-    email: "lisa.a@ihuza.com", 
-    role: "Manager", 
-    status: "Active", 
-    lastLogin: "30 min ago",
-  },
-  {
-    name: "Robert Taylor", 
-    email: "r.taylor@ihuza.com", 
-    role: "Staff", 
-    status: "Active", 
-    lastLogin: "2 days ago",
-  },
-  {
-    name: "Jennifer Miller", 
-    email: "j.miller@ihuza.com", 
-    role: "Staff", 
-    status: "Active", 
-    lastLogin: "4 hours ago",
-  },
-];
+// const users = [
+//   {
+//     name: "John Smith", 
+//     email: "john.smith@ihuza.com", 
+//     role: "Admin", 
+//     status: "Active", 
+//     lastLogin: "2 hours ago",
+//   },
+//   {
+//     name: "Sarah Johnson", 
+//     email: "sarah.j@ihuza.com", 
+//     role: "Manager", 
+//     status: "Active", 
+//     lastLogin: "5 hours ago",
+//   },
+//   {
+//     name: "Michael Brown", 
+//     email: "m.brown@ihuza.com", 
+//     role: "Staff", 
+//     status: "Active", 
+//     lastLogin: "1 day ago",
+//   },
+//   {
+//     name: "Emily Davis", 
+//     email: "emily.d@ihuza.com", 
+//     role: "Staff", 
+//     status: "Inactive", 
+//     lastLogin: "3 days ago",
+//   },
+//   {
+//     name: "David Wilson", 
+//     email: "d.wilson@ihuza.com", 
+//     role: "Staff", 
+//     status: "Active", 
+//     lastLogin: "6 hours ago",
+//   },
+//   {
+//     name: "Lisa Anderson", 
+//     email: "lisa.a@ihuza.com", 
+//     role: "Manager", 
+//     status: "Active", 
+//     lastLogin: "30 min ago",
+//   },
+//   {
+//     name: "Robert Taylor", 
+//     email: "r.taylor@ihuza.com", 
+//     role: "Staff", 
+//     status: "Active", 
+//     lastLogin: "2 days ago",
+//   },
+//   {
+//     name: "Jennifer Miller", 
+//     email: "j.miller@ihuza.com", 
+//     role: "Staff", 
+//     status: "Active", 
+//     lastLogin: "4 hours ago",
+//   },
+// ];
 
 const RoleBadge = ({ role }) => {
   const getRoleColor = (role) => {
@@ -103,6 +105,7 @@ const StatusBadge = ({ status }) => {
 };
 
 const UserTable = () => {
+    const { users } = useContext(UserContext);
   const handleEdit = (user) => {
     console.log('Edit user:', user);
   };
