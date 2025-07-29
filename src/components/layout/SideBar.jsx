@@ -5,10 +5,11 @@ import { LuUsers } from "react-icons/lu";
 import { MdOutlineSegment } from "react-icons/md";
 import { FiLayers } from "react-icons/fi";
 import { FiLogOut } from "react-icons/fi";
+import { useTheme } from '../../hooks/useTheme';
 
 const SideBar = ({ isMobile = false, onItemClick }) => {
   const [activeItem, setActiveItem] = useState('Dashboard');
-
+const { isDark } = useTheme();
   const handleItemClick = (itemName) => {
     setActiveItem(itemName);
     // Call parent function to close mobile sidebar if needed
@@ -47,15 +48,15 @@ const SideBar = ({ isMobile = false, onItemClick }) => {
   ];
 
   return (
-    <div className="h-full w-full bg-white shadow-md flex flex-col">
+    <div className={`h-full w-full ${isDark ? 'bg-primarycolor-800 border-gray-700' : 'bg-white border-gray-200'} shadow-md flex flex-col`}>
       {/* Logo Section */}
-      <div className="flex items-center gap-3 p-4 border-b border-gray-100">
+      <div className="flex items-center gap-3 p-4 ">
         <div className="bg-primarycolor-600 text-white rounded-lg h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center flex-shrink-0">
           <FiPackage className="text-xl sm:text-2xl" />
         </div>
         <div className="min-w-0 flex-1">
-          <h1 className="font-bold text-lg sm:text-xl text-gray-900 leading-tight">iHUZA</h1>
-          <p className="text-xs sm:text-sm text-gray-500 leading-tight">INVENTORY</p>
+          <h1 className={`text-xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>iHUZA</h1>
+          <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>INVENTORY</p>
         </div>
       </div>
 
@@ -64,7 +65,6 @@ const SideBar = ({ isMobile = false, onItemClick }) => {
         {menuItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeItem === item.name;
-          
           return (
             <button
               key={item.name}
@@ -72,31 +72,41 @@ const SideBar = ({ isMobile = false, onItemClick }) => {
               className={`
                 w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left
                 transition-all duration-200 group
-                ${isActive 
-                  ? 'bg-primarycolor-50 text-primarycolor-700 shadow-sm' 
-                  : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                ${isActive
+                  ? isDark
+                    ? 'bg-primarycolor-800 text-primarycolor-100 shadow-sm'
+                    : 'bg-primarycolor-50 text-primarycolor-500 shadow-sm'
+                  : isDark
+                    ? 'text-gray-300 hover:bg-primarycolor-600 hover:text-white'
+                    : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
                 }
               `}
             >
-              <Icon 
-                size={20} 
+              <Icon
+                size={20}
                 className={`flex-shrink-0 ${
-                  isActive 
-                    ? 'text-primarycolor-600' 
-                    : 'text-gray-500 group-hover:text-gray-700'
-                }`} 
+                  isActive
+                    ? isDark
+                      ? 'text-primarycolor-200'
+                      : 'text-primarycolor-600'
+                    : isDark
+                      ? 'text-gray-500 group-hover:text-white'
+                      : 'text-gray-500 group-hover:text-gray-700'
+                }`}
               />
-              
-              <span className="font-medium text-sm sm:text-base min-w-0 flex-1 truncate">
+              <span className={`font-medium text-sm sm:text-base min-w-0 flex-1 truncate ${isDark ? 'text-gray-100' : ''}`}>
                 {item.name}
               </span>
-              
               {item.count && (
                 <span className={`
                   text-xs px-2 py-1 rounded-full font-medium flex-shrink-0
-                  ${isActive 
-                    ? 'bg-primarycolor-100 text-primarycolor-700' 
-                    : 'bg-gray-200 text-gray-600'
+                  ${isActive
+                    ? isDark
+                      ? 'bg-primarycolor-900 text-primarycolor-100'
+                      : 'bg-primarycolor-100 text-primarycolor-700'
+                    : isDark
+                      ? 'bg-gray-800 text-gray-400'
+                      : 'bg-gray-200 text-gray-600'
                   }
                 `}>
                   {item.count}
@@ -108,17 +118,17 @@ const SideBar = ({ isMobile = false, onItemClick }) => {
       </nav>
 
       {/* Footer Section */}
-      <div className="border-t border-gray-100 p-3">
+      <div className={`border-t ${isDark ? 'border-gray-700' : 'border-gray-200'} p-3`}>
         <button 
           onClick={() => handleItemClick('logout')}
           className="
             w-full flex items-center gap-3 px-3 py-2.5 rounded-lg
-            text-gray-700 hover:bg-red-50 hover:text-red-600
+            text-gray-500 hover:bg-red-50 hover:text-red-600
             transition-all duration-200 group
           "
         >
-          <FiLogOut 
-            size={20} 
+          <FiLogOut
+            size={20}
             className="flex-shrink-0 text-gray-500 group-hover:text-red-500" 
           />
           <span className="font-medium text-sm sm:text-base">

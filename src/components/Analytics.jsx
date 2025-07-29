@@ -25,14 +25,14 @@ const Analytics = () => {
         <AnalyticCard
           icon={< IoMdCheckmarkCircleOutline />}
       title='116'
-      description='Total User'
+      description='Assigned Products'
           iconColor='text-green-500 '
       bgColor='bg-green-100'
         />
         <AnalyticCard
           icon={<FaExclamationTriangle/>}
       title='116'
-      description='Total User'
+      description='Unassigned Products'
       iconColor='text-yellow-500'
       bgColor='bg-orange-100'
         />

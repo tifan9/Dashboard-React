@@ -3,66 +3,7 @@ import { User } from 'lucide-react';
 import Button from './Button';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
-
-
-// const users = [
-//   {
-//     name: "John Smith", 
-//     email: "john.smith@ihuza.com", 
-//     role: "Admin", 
-//     status: "Active", 
-//     lastLogin: "2 hours ago",
-//   },
-//   {
-//     name: "Sarah Johnson", 
-//     email: "sarah.j@ihuza.com", 
-//     role: "Manager", 
-//     status: "Active", 
-//     lastLogin: "5 hours ago",
-//   },
-//   {
-//     name: "Michael Brown", 
-//     email: "m.brown@ihuza.com", 
-//     role: "Staff", 
-//     status: "Active", 
-//     lastLogin: "1 day ago",
-//   },
-//   {
-//     name: "Emily Davis", 
-//     email: "emily.d@ihuza.com", 
-//     role: "Staff", 
-//     status: "Inactive", 
-//     lastLogin: "3 days ago",
-//   },
-//   {
-//     name: "David Wilson", 
-//     email: "d.wilson@ihuza.com", 
-//     role: "Staff", 
-//     status: "Active", 
-//     lastLogin: "6 hours ago",
-//   },
-//   {
-//     name: "Lisa Anderson", 
-//     email: "lisa.a@ihuza.com", 
-//     role: "Manager", 
-//     status: "Active", 
-//     lastLogin: "30 min ago",
-//   },
-//   {
-//     name: "Robert Taylor", 
-//     email: "r.taylor@ihuza.com", 
-//     role: "Staff", 
-//     status: "Active", 
-//     lastLogin: "2 days ago",
-//   },
-//   {
-//     name: "Jennifer Miller", 
-//     email: "j.miller@ihuza.com", 
-//     role: "Staff", 
-//     status: "Active", 
-//     lastLogin: "4 hours ago",
-//   },
-// ];
+import { useTheme } from '../hooks/useTheme';
 
 const RoleBadge = ({ role }) => {
   const getRoleColor = (role) => {
@@ -106,6 +47,8 @@ const StatusBadge = ({ status }) => {
 
 const UserTable = () => {
     const { users } = useContext(UserContext);
+    const { isDark } = useTheme();
+    
   const handleEdit = (user) => {
     console.log('Edit user:', user);
   };
@@ -119,51 +62,63 @@ const UserTable = () => {
   };
 
   return (
-    <div className=" pt-5 ">
-      <div className="bg-white rounded-lg shadow-sm">
+    <div className="pt-5">
+      <div
+        className={`rounded-lg shadow-sm border ${
+          isDark ? 'bg-primarycolor-800 border-gray-700' : 'bg-white border-gray-200'
+        }`}
+      >
         {/* Header */}
-        <div className="flex justify-between items-center p-6 border-b border-gray-200">
-          <h1 className="text-xl font-semibold text-gray-900">Users</h1>
+        <div
+          className={`flex justify-between items-center p-6 border-b ${
+            isDark ? 'border-gray-700' : 'border-gray-200'
+          }`}
+        >
+          <h1 className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>Users</h1>
           <Button label="Add User" onClick={handleAddUser} />
         </div>
 
         {/* Table */}
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50">
+            <thead
+              className={`border-b ${
+                isDark ? 'bg-primarycolor-800 border-gray-700' : 'bg-gray-50 border-gray-200'
+              }`}
+            >
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className={`px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
                   User
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className={`px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
                   Role
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className={`px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
                   Status
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className={`px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
                   Last Login
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className={`px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className={`${isDark ? 'bg-primarycolor-800 divide-gray-800' : 'bg-white divide-gray-200'} divide-y`}>
               {users.map((user, index) => (
-                <tr key={index} className="hover:bg-gray-50">
+                <tr key={index} className={`${isDark ? 'hover:bg-primarycolor-800' : 'hover:bg-gray-50'}`}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-10 w-10">
-                        <div className="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center">
-                          <User className="h-5 w-5 text-gray-500" />
+                        <div className={`h-10 w-10 rounded-full flex items-center justify-center ${isDark ? 'bg-gray-800' : 'bg-gray-200'}`}>
+                          <User className={`h-5 w-5 ${isDark ? 'text-gray-400' : 'text-gray-500'}`} />
                         </div>
                       </div>
                       <div className="ml-4">
-                        <div className="text-sm font-medium text-gray-900">
+                        <div className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>
                           {user.name}
                         </div>
-                        <div className="text-sm text-gray-500">
+                        <div className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                           {user.email}
                         </div>
                       </div>
@@ -175,19 +130,19 @@ const UserTable = () => {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <StatusBadge status={user.status} />
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className={`px-6 py-4 whitespace-nowrap text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
                     {user.lastLogin}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                  <td className={`px-6 py-4 whitespace-nowrap text-sm`}>
                     <div className="flex space-x-2">
-                      <Button 
-                        label="Edit" 
-                        variant="secondary" 
+                      <Button
+                        label="Edit"
+                        variant="secondary"
                         onClick={() => handleEdit(user)}
                       />
-                      <Button 
-                        label="Delete" 
-                        variant="danger" 
+                      <Button
+                        label="Delete"
+                        variant="danger"
                         onClick={() => handleDelete(user)}
                       />
                     </div>
