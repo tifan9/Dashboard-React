@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import {ProductThemeContext} from "../context/ProductThemeContext";
+import { ProductContext } from "../context/ProductContext";
 
 export const useProductTheme = () => {
-    const context = useContext(ProductThemeContext);
+    const context = useContext(ProductContext);
     if (!context) {
         throw new Error('useProductTheme must be used within a ProductProvider');
     }

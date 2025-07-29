@@ -1,7 +1,6 @@
 import React from 'react';
 import { User } from 'lucide-react';
 import Button from './Button';
-import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { useTheme } from '../hooks/useTheme';
 import { useUserTheme } from '../hooks/userTheme';

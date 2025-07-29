@@ -6,13 +6,14 @@ import Analytics from '../components/Analytics';
 import Product from '../components/Product';
 import UserTable from '../components/UserTable';
 import { useTheme } from '../hooks/useTheme';
+import Action from '../components/Action';
+import Activity from '../components/Activity';
 
 const Dashboard = () => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
     const { isDark, toggleTheme } = useTheme();
 
-  // Handle screen resize
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -120,8 +121,19 @@ const Dashboard = () => {
 
               {/* User Table Component */}
               <div className="w-full">
+                
                 <UserTable />
               </div>
+              <div className="w-full ">
+                <div className="w-full flex flex-col lg:flex-row gap-4">
+                  <div className="flex-1">
+                    <Activity />
+                  </div>
+                  <div className="flex-1">
+                    <Action />
+                  </div>
+                </div>
+            </div>
             </div>
           </main>
         </div>
