@@ -4,6 +4,7 @@ import Button from './Button';
 import { useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import { useTheme } from '../hooks/useTheme';
+import { useUserTheme } from '../hooks/userTheme';
 
 const RoleBadge = ({ role }) => {
   const getRoleColor = (role) => {
@@ -46,7 +47,7 @@ const StatusBadge = ({ status }) => {
 };
 
 const UserTable = () => {
-    const { users } = useContext(UserContext);
+    const { users } = useUserTheme();
     const { isDark } = useTheme();
     
   const handleEdit = (user) => {
@@ -83,7 +84,7 @@ const UserTable = () => {
           <table className="w-full">
             <thead
               className={`border-b ${
-                isDark ? 'bg-primarycolor-800 border-gray-700' : 'bg-gray-50 border-gray-200'
+                isDark ? 'bg-primarycolor-800 border-gray-700' : 'bg-gray-100 border-gray-200'
               }`}
             >
               <tr>

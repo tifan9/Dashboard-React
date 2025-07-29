@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
 import ProductCard from './cards/ProductCard';
 import { useTheme } from '../hooks/useTheme';
 import { ProductContext } from '../context/ProductContext';
-
+import{useProductTheme} from '../hooks/productTheme';
 const Product = () => {
-  const {productList} = useContext(ProductContext);
+  const {productList} = useProductTheme();
 
   const { isDark } = useTheme();
   return (
