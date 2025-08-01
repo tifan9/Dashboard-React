@@ -8,10 +8,10 @@ const ActivityItem = ({ icon: Icon, iconColor, title, subtitle, date }) => {
   return (
     <div className="flex items-start gap-3 mb-6 last:mb-0">
       <div className={`p-2 rounded-lg ${iconColor}`}>
-        <Icon size={16} className="text-white" />
+        <Icon size={16} className={`text-white`} />
       </div>
       <div className="flex-1">
-        <h3 className={`font-medium text-sm ${isDark ? 'text-white' : 'text-gray-900'}`}>
+        <h3 className={`font-semibold text-sm ${isDark ? 'text-white' : 'text-gray-900'}`}>
           {title}
         </h3>
         <p className={`text-sm mt-1 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
@@ -31,7 +31,7 @@ const Activity = () => {
   return (
     <div className={`p-6 rounded-lg ${isDark ? 'bg-primarycolor-800' : 'bg-white'}`}>
       <div className='flex justify-between items-center mb-6'>
-        <h1 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Recent Activity</h1>
+        <h1 className={`text-lg font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>Recent Activity</h1>
         <button className={`text-sm hover:underline ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
           View all
         </button>

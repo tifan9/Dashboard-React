@@ -6,15 +6,16 @@ import { MdOutlineSegment } from "react-icons/md";
 import { FiLayers } from "react-icons/fi";
 import { FiLogOut } from "react-icons/fi";
 import { useTheme } from '../../hooks/useTheme';
+import { Link } from 'react-router-dom';
 
 const SideBar = ({ isMobile = false, onItemClick }) => {
   const [activeItem, setActiveItem] = useState('Dashboard');
-const { isDark } = useTheme();
+  const { isDark } = useTheme();
   const handleItemClick = (itemName) => {
     setActiveItem(itemName);
-    // Call parent function to close mobile sidebar if needed
     if (onItemClick) {
       onItemClick(itemName);
+      
     }
   };
 
@@ -28,7 +29,8 @@ const { isDark } = useTheme();
     {
       name: 'Users',
       icon: LuUsers,
-      count: 116
+      count: 116,
+
     },
     {
       name: 'Products',
@@ -84,15 +86,14 @@ const { isDark } = useTheme();
             >
               <Icon
                 size={20}
-                className={`flex-shrink-0 ${
-                  isActive
+                className={`flex-shrink-0 ${isActive
                     ? isDark
                       ? 'text-primarycolor-200'
                       : 'text-primarycolor-600'
                     : isDark
                       ? 'text-gray-500 group-hover:text-white'
                       : 'text-gray-500 group-hover:text-gray-700'
-                }`}
+                  }`}
               />
               <span className={`font-medium text-sm sm:text-base min-w-0 flex-1 truncate ${isDark ? 'text-gray-100' : ''}`}>
                 {item.name}
@@ -119,22 +120,25 @@ const { isDark } = useTheme();
 
       {/* Footer Section */}
       <div className={`border-t ${isDark ? 'border-gray-700' : 'border-gray-200'} p-3`}>
-        <button 
-          onClick={() => handleItemClick('logout')}
-          className="
+        <Link to="/login">
+          <button
+            onClick={() => handleItemClick('logout')}
+            className="
             w-full flex items-center gap-3 px-3 py-2.5 rounded-lg
             text-gray-500 hover:bg-red-50 hover:text-red-600
             transition-all duration-200 group
           "
-        >
-          <FiLogOut
-            size={20}
-            className="flex-shrink-0 text-gray-500 group-hover:text-red-500" 
-          />
-          <span className="font-medium text-sm sm:text-base">
-            Logout
-          </span>
-        </button>
+          >
+            <FiLogOut
+              size={20}
+              className="flex-shrink-0 text-gray-500 group-hover:text-red-500"
+            />
+            <span className="font-medium text-sm sm:text-base">
+              Logout
+            </span>
+          </button>
+        </Link>
+
       </div>
 
       {/* Mobile indicator (optional) */}

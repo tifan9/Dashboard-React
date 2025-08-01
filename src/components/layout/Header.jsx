@@ -9,7 +9,6 @@ import {
   User
 } from 'lucide-react';
 import { useLoginUser } from '../../context/LoginUserContext';
-
 const Header = () => {
     const { isDark, toggleTheme } = useTheme();
     const loginUser = useLoginUser();

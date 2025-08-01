@@ -1,9 +1,8 @@
 import ProductCard from './cards/ProductCard';
 import { useTheme } from '../hooks/useTheme';
-import { ProductContext } from '../context/ProductContext';
-import{useProductTheme} from '../hooks/productTheme';
+import{useProduct} from '../hooks/useProduct';
 const Product = () => {
-  const {productList} = useProductTheme();
+  const {productList} = useProduct();
 
   const { isDark } = useTheme();
   return (

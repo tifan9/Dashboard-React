@@ -4,22 +4,25 @@ import { UserProvider } from './context/UserContext';
 import Dashboard from './pages/Dashboard';
 import { ProductProvider } from './context/ProductContext';
 import { LoginUserProvider } from './context/LoginUserContext';
+import { BrowserRouter } from "react-router-dom";
+import AppRoutes from './routes/AppRoutes';
 
 
 function App() {
   
   return (
-    <ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider>
       <LoginUserProvider>
         <UserProvider>
         <ProductProvider>
-          <div className="min-h-screen">
-          <Dashboard />
-        </div>
+          <AppRoutes />
         </ProductProvider>
       </UserProvider>
       </LoginUserProvider>
     </ThemeProvider>
+    </BrowserRouter>
+    
     
   );
 }

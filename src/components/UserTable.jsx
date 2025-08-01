@@ -1,9 +1,8 @@
 import React from 'react';
 import { User } from 'lucide-react';
 import Button from './Button';
-import { UserContext } from '../context/UserContext';
 import { useTheme } from '../hooks/useTheme';
-import { useUserTheme } from '../hooks/userTheme';
+import { useUser } from '../hooks/useUser';
 
 const RoleBadge = ({ role }) => {
   const getRoleColor = (role) => {
@@ -46,7 +45,7 @@ const StatusBadge = ({ status }) => {
 };
 
 const UserTable = () => {
-    const { users } = useUserTheme();
+    const { users } = useUser();
     const { isDark } = useTheme();
     
   const handleEdit = (user) => {
@@ -75,7 +74,7 @@ const UserTable = () => {
           }`}
         >
           <h1 className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>Users</h1>
-          <Button label="Add User" onClick={handleAddUser} />
+          <Button className="" size="sm" label="Add User" onClick={handleAddUser} />
         </div>
 
         {/* Table */}

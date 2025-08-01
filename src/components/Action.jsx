@@ -8,7 +8,7 @@ const Action = () => {
   
   return (
     <div className={`p-6 rounded-lg ${isDark ? 'bg-primarycolor-800' : 'bg-white'}`}>
-      <h1 className={`text-2xl font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>Quick Actions</h1>
+      <h1 className={`text-lg font-bold mb-6 ${isDark ? 'text-white' : 'text-gray-900'}`}>Quick Actions</h1>
       
       <div className="space-y-0">
         <ActionCard

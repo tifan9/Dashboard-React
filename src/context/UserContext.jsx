@@ -29,7 +29,7 @@ export const UserProvider = ({ children }) => {
       name: "Emily Davis",
       email: "emir.y.d@huza.com",
       role: "Staff",
-      status: "inactive",
+      status: "Inactive",
       lastLogin: "3 days ago"
     },
     {
@@ -71,7 +71,7 @@ export const UserProvider = ({ children }) => {
       name: "Amanda White",
       email: "a.wittle@huza.com",
       role: "Staff",
-      status: "inactive",
+      status: "Inactive",
       lastLogin: "1 week ago"
     }
   ]);
