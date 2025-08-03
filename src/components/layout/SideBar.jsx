@@ -6,16 +6,25 @@ import { MdOutlineSegment } from "react-icons/md";
 import { FiLayers } from "react-icons/fi";
 import { FiLogOut } from "react-icons/fi";
 import { useTheme } from '../../hooks/useTheme';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SideBar = ({ isMobile = false, onItemClick }) => {
   const [activeItem, setActiveItem] = useState('Dashboard');
   const { isDark } = useTheme();
+  const navigate = useNavigate();
   const handleItemClick = (itemName) => {
     setActiveItem(itemName);
     if (onItemClick) {
       onItemClick(itemName);
       
+    }
+    if (itemName === 'logout') {
+      navigate('/login');
+    } else {
+      const item = menuItems.find(item => item.name === itemName);
+      if (item && item.path) {
+        navigate(item.path);
+      }
     }
   };
 
@@ -24,12 +33,14 @@ const SideBar = ({ isMobile = false, onItemClick }) => {
       name: 'Dashboard',
       icon: MdOutlineLaptopChromebook,
       count: null,
-      active: true
+      active: true,
+      path: '/'
     },
     {
       name: 'Users',
       icon: LuUsers,
       count: 116,
+      path: '/users'
 
     },
     {
