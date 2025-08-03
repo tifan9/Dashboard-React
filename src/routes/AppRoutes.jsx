@@ -2,9 +2,10 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 
-import Dashboard from '../pages/Dashboard';
-import Login from '../pages/Login';
-import Users from '../pages/Users';
+import Dashboard from '@pages/Dashboard';
+import Login from '@pages/Login';
+import Users from '@pages/Users';
+import ProductPage from '@pages/ProductPage';
 
 
 const AppRoutes = () => {
@@ -14,7 +15,7 @@ const AppRoutes = () => {
         <Route path="/" element={<Dashboard />}/>
         <Route path="/login" element={<Login />} />
         <Route path="/users" element={<Users />} />
-        {/* <Route path="/products" element={<ProductPage />} /> */}
+        <Route path="/products" element={<ProductPage />} />
     </Routes>
     </>
   );

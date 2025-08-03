@@ -20,11 +20,11 @@ const SideBar = ({ isMobile = false, onItemClick }) => {
     }
     if (itemName === 'logout') {
       navigate('/login');
-    } else {
-      const item = menuItems.find(item => item.name === itemName);
-      if (item && item.path) {
-        navigate(item.path);
-      }
+      return;
+    } 
+    const item = menuItems.find(item => item.name === itemName);
+    if (item && item.path) {
+      navigate(item.path);
     }
   };
 
@@ -46,7 +46,8 @@ const SideBar = ({ isMobile = false, onItemClick }) => {
     {
       name: 'Products',
       icon: FiPackage,
-      count: 100
+      count: 100,
+      path: '/products'
     },
     {
       name: 'Assignments',
