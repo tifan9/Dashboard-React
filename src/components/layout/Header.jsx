@@ -11,14 +11,14 @@ import {
 import { useLoginUser } from '../../context/LoginUserContext';
 const Header = () => {
     const { isDark, toggleTheme } = useTheme();
-    const loginUser = useLoginUser();
+    const { loginUser } = useLoginUser();
 
   return (
     <div className={`flex flex-wrap items-center px-6 py-4 shadow-md ${isDark ? 'bg-primarycolor-800 border-gray-700' : 'bg-white border-gray-200'}`}>
       
       <div className="text-left mb-4 sm:mb-0">
         <h2 className={`font-bold text-2xl ${isDark ? 'text-white' : 'text-gray-900'}`}>Dashboard</h2>
-        <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Welcome Back, {loginUser?.username}</p>
+        <p className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>Welcome Back, {loginUser?.name || loginUser?.username || 'Guest'}</p>
       </div>
       <div className="flex-grow"></div>
       <div className="flex items-center space-x-4">
@@ -44,7 +44,7 @@ const Header = () => {
         
         
         <span className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-      {loginUser?.email}
+      {loginUser?.email || ''}
     </span>
     <div className="w-8 h-8 bg-primarycolor-600 rounded-full text-white flex items-center justify-center font-bold">
        <LuUser />

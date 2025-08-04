@@ -3,7 +3,9 @@ import { Eye, EyeOff, Package } from 'lucide-react';
 
 import Button from '../components/Button';
 import { Input } from '../components/Input';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useUser } from '../hooks/useUser';
+import { useLoginUser } from '../context/LoginUserContext';
 // Reusable Components
 const Card = ({ children, className = '' }) => (
     <div className={`bg-white rounded-lg shadow-xl border border-gray-300 ${className}`}>
@@ -12,11 +14,34 @@ const Card = ({ children, className = '' }) => (
 );
 
 const Login = () => {
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({ email: '', password: '' });
+    const [isLoading, setIsLoading] = useState(false);
+    const { users } = useUser();
+    const [error, setError] = useState('');
+    const { setLoginUser } = useLoginUser();
 
     const handleLogin = () => {
-        console.log('Login attempted with:', formData);
+        setError('');
+        setIsLoading(true);
+        if (formData.email && formData.password) {
+            const foundUser = users.find(user => user.email === formData.email && user.password === formData.password);
+            if (!foundUser) {
+                setIsLoading(false);
+                setError('Invalid email or password.');
+                return;
+            }
+            localStorage.setItem('loginUser', JSON.stringify(foundUser));
+            setLoginUser(foundUser);
+            setTimeout(() => {
+                setIsLoading(false);
+                navigate('/');
+            }, 1000);
+        } else {
+            setIsLoading(false);
+            setError('Please fill in all fields');
+        }
     };
 
     return (
@@ -31,6 +56,9 @@ const Login = () => {
                 </div>
 
                 <div className="space-y-6">
+                    {error && (
+                        <div className="text-red-500 text-sm text-center">{error}</div>
+                    )}
                     <Input
                         label="Email Address"
                         type="email"
@@ -66,7 +94,7 @@ const Login = () => {
                         </label>
                         <button className="text-sm text-primarycolor-600 hover:text-primarycolor-700">Forgot password?</button>
                     </div>
-                    <Link to="/">
+                    <Link >
                         <Button className="w-full" size="xl" onClick={handleLogin} label="Sign In" />
                     </Link>
 

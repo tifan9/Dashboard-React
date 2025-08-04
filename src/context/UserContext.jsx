@@ -7,6 +7,7 @@ export const UserProvider = ({ children }) => {
     {
       name: "John Smith",
       email: "john.smith@huza.com",
+      password:"123",
       role: "Admin",
       status: "Active",
       lastLogin: "2 hours ago"
@@ -14,6 +15,7 @@ export const UserProvider = ({ children }) => {
     {
       name: "Sarah Johnson",
       email: "sarah.john.ra.com",
+      password:"123",
       role: "Manager",
       status: "Active",
       lastLogin: "5 hours ago"
@@ -21,6 +23,7 @@ export const UserProvider = ({ children }) => {
     {
       name: "Michael Brown",
       email: "m.brown@huza.com",
+      password:"123",
       role: "Staff",
       status: "Active",
       lastLogin: "1 day ago"
@@ -28,6 +31,7 @@ export const UserProvider = ({ children }) => {
     {
       name: "Emily Davis",
       email: "emir.y.d@huza.com",
+      password:"123",
       role: "Staff",
       status: "Inactive",
       lastLogin: "3 days ago"
@@ -35,6 +39,7 @@ export const UserProvider = ({ children }) => {
     {
       name: "David Wilson",
       email: "d.wilson@huza.com",
+      password:"123",
       role: "Staff",
       status: "Active",
       lastLogin: "8 hours ago"
@@ -42,6 +47,7 @@ export const UserProvider = ({ children }) => {
     {
       name: "Lisa Anderson",
       email: "isa.a@huza.com",
+      password:"123",
       role: "Manager",
       status: "Active",
       lastLogin: "30 min ago"
@@ -49,6 +55,7 @@ export const UserProvider = ({ children }) => {
     {
       name: "Robert Taylor",
       email: "t.taylor@huza.com",
+      password:"123",
       role: "Staff",
       status: "Active",
       lastLogin: "2 days ago"
@@ -56,6 +63,7 @@ export const UserProvider = ({ children }) => {
     {
       name: "Jennifer Miller",
       email: "j.miller@huza.com",
+      password:"123",
       role: "Staff",
       status: "Active",
       lastLogin: "4 hours ago"
@@ -63,6 +71,7 @@ export const UserProvider = ({ children }) => {
     {
       name: "Christopher Lee",
       email: "c.lee@huza.com",
+      password:"123",
       role: "Admin",
       status: "Active",
       lastLogin: "1 hour ago"
@@ -70,6 +79,7 @@ export const UserProvider = ({ children }) => {
     {
       name: "Amanda White",
       email: "a.wittle@huza.com",
+      password:"123",
       role: "Staff",
       status: "Inactive",
       lastLogin: "1 week ago"
