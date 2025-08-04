@@ -11,7 +11,7 @@ const AnalyticCard = ({
   const { isDark } = useTheme();
   return (
     <>
-      <div className={`${isDark ? 'bg-primarycolor-800' : 'bg-white'} shadow-md rounded-lg p-6 flex items-center sm:items-start`}>
+      <div className={`${isDark ? 'bg-primarycolor-800' : 'bg-white'} shadow-md rounded-lg hover:shadow-lg transition-shadow duration-100 p-6 flex items-center sm:items-start`}>
         <div className={`text-4xl mr-4 ${iconColor} ${bgColor} p-3 rounded-md`}>{icon}</div>
         {/* Title and Description Section */}
         <div>

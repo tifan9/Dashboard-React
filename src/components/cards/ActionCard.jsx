@@ -13,9 +13,13 @@ const ActionCard = ({
     primary: "bg-blue-600 hover:bg-blue-700 text-white",
     purple: "bg-purple-600 hover:bg-purple-700 text-white"
   };
+  const backgroundColor = {
+    primary: isDark ? 'bg-primarycolor-800' : 'bg-gray-100',
+    purple: isDark ? 'bg-purple-900' : 'bg-purple-50'
+  }
 
   return (
-    <div className={`flex justify-between items-center p-6 rounded-lg mb-4 last:mb-0 ${isDark ? 'bg-primarycolor-700' : 'bg-gray-50'}`}>
+    <div className={`flex justify-between items-center p-6 rounded-lg mb-4 last:mb-0 ${backgroundColor[buttonVariant]} hover:shadow-lg transition-shadow duration-100`}>
       <div className='flex items-center gap-4'>
         <Icon className={`${isDark ? 'text-blue-400' : 'text-blue-600'}`} size={28}/>
         <div>
