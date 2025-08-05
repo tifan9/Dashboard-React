@@ -54,14 +54,10 @@ const SideBar = ({ isMobile = false, onItemClick }) => {
       path: '/products'
     },
     {
-      name: 'Assignments',
-      icon: MdOutlineSegment,
-      count: 10
-    },
-    {
       name: 'Categories',
       icon: FiLayers,
-      count: null
+      count: null,
+      path:'/category'
     }
   ];
 

@@ -6,6 +6,7 @@ import { ProductProvider } from './context/ProductContext';
 import { LoginUserProvider } from './context/LoginUserContext';
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from './routes/AppRoutes';
+import { CategoryProvider } from './context/CategoryContext';
 
 
 function App() {
@@ -16,7 +17,9 @@ function App() {
       <LoginUserProvider>
         <UserProvider>
         <ProductProvider>
-          <AppRoutes />
+          <CategoryProvider>
+            <AppRoutes />
+          </CategoryProvider>
         </ProductProvider>
       </UserProvider>
       </LoginUserProvider>

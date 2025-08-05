@@ -6,7 +6,6 @@ import {
   Moon, 
   Bell,
   Settings,
-  User
 } from 'lucide-react';
 import { useLoginUser } from '../../context/LoginUserContext';
 const Header = () => {

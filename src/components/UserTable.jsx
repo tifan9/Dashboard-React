@@ -1,156 +1,82 @@
 import React from 'react';
-import { User } from 'lucide-react';
+import Table from './Table';
 import Button from './Button';
 import { useTheme } from '../hooks/useTheme';
 import { useUser } from '../hooks/useUser';
 
-const RoleBadge = ({ role }) => {
-  const getRoleColor = (role) => {
-    switch (role) {
-      case 'Admin':
-        return 'bg-purple-100 text-purple-700';
-      case 'Manager':
-        return 'bg-blue-100 text-blue-700';
-      case 'Staff':
-        return 'bg-gray-100 text-gray-700';
-      default:
-        return 'bg-gray-100 text-gray-700';
-    }
-  };
+const RoleBadge = ({ role }) => (
+  <span className={`px-2 py-1 rounded-full text-xs font-medium ${role === 'Admin' ? 'bg-purple-100 text-purple-700' : role === 'Manager' ? 'bg-blue-100 text-blue-700' : 'bg-gray-100 text-gray-700'}`}>
+    {role}
+  </span>
+);
 
-  return (
-    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getRoleColor(role)}`}>
-      {role}
-    </span>
-  );
-};
-
-const StatusBadge = ({ status }) => {
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'Active':
-        return 'bg-green-100 text-green-700';
-      case 'Inactive':
-        return 'bg-red-100 text-red-700';
-      default:
-        return 'bg-gray-100 text-gray-700';
-    }
-  };
-
-  return (
-    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(status)}`}>
-      {status}
-    </span>
-  );
-};
+const StatusBadge = ({ status }) => (
+  <span className={`px-2 py-1 rounded-full text-xs font-medium ${status === 'Active' ? 'bg-green-100 text-green-700' : status === 'Inactive' ? 'bg-red-100 text-red-700' : 'bg-gray-100 text-gray-700'}`}>
+    {status}
+  </span>
+);
 
 const UserTable = () => {
-    const { users } = useUser();
-    const { isDark } = useTheme();
-    
-  const handleEdit = (user) => {
-    console.log('Edit user:', user);
-  };
+  const { users } = useUser();
+  const { isDark } = useTheme();
 
-  const handleDelete = (user) => {
-    console.log('Delete user:', user);
-  };
+  const columns = [
+    { label: 'User', className: `px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}` },
+    { label: 'Role', className: `px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}` },
+    { label: 'Status', className: `px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}` },
+    { label: 'Last Login', className: `px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}` },
+    { label: 'Actions', className: `px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}` }
+  ];
 
-  const handleAddUser = () => {
-    console.log('Add new user');
-  };
+  const renderRow = (user, idx) => (
+    <tr key={idx} className={`${isDark ? 'bg-primarycolor-800 hover:bg-primarycolor-700' : 'bg-white hover:bg-gray-50'} border-b ${isDark ? 'border-gray-700' : 'border-gray-200'}`}>
+      <td className="px-6 py-4 whitespace-nowrap">
+        <div>
+          <div className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>{user.name}</div>
+          <div className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>{user.email}</div>
+        </div>
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap">
+        <RoleBadge role={user.role} />
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap">
+        <StatusBadge status={user.status} />
+      </td>
+      <td className={`px-6 py-4 whitespace-nowrap text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}> 
+        {user.lastLogin}
+      </td>
+      <td className="px-6 py-4 whitespace-nowrap text-sm">
+        <div className="flex space-x-2">
+          <Button label="Edit" variant="secondary" onClick={() => {}} />
+          <Button label="Delete" variant="danger" onClick={() => {}} />
+        </div>
+      </td>
+    </tr>
+  );
 
   return (
-    <div className="pt-5">
+    <div
+      className={`rounded-lg shadow-sm border ${isDark ? 'bg-primarycolor-800 border-gray-700' : 'bg-white border-gray-200'}`}
+    >
       <div
-        className={`rounded-lg shadow-sm border ${
-          isDark ? 'bg-primarycolor-800 border-gray-700' : 'bg-white border-gray-200'
-        }`}
+        className={`flex justify-between items-center p-6 border-b ${isDark ? 'border-gray-700' : 'border-gray-200'}`}
       >
-        {/* Header */}
-        <div
-          className={`flex justify-between items-center p-6 border-b ${
-            isDark ? 'border-gray-700' : 'border-gray-200'
-          }`}
-        >
-          <h1 className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>Users</h1>
-          <Button className="" size="sm" label="Add User" onClick={handleAddUser} />
-        </div>
-
-        {/* Table */}
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead
-              className={`border-b ${
-                isDark ? 'bg-primarycolor-800 border-gray-700' : 'bg-gray-100 border-gray-200'
-              }`}
-            >
-              <tr>
-                <th className={`px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
-                  User
-                </th>
-                <th className={`px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
-                  Role
-                </th>
-                <th className={`px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
-                  Status
-                </th>
-                <th className={`px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
-                  Last Login
-                </th>
-                <th className={`px-6 py-3 text-left text-xs font-medium uppercase tracking-wider ${isDark ? 'text-gray-300' : 'text-gray-500'}`}>
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody className={`${isDark ? 'bg-primarycolor-800 divide-gray-800' : 'bg-white divide-gray-200'} divide-y`}>
-              {users.map((user, index) => (
-                <tr key={index} className={`${isDark ? 'hover:bg-primarycolor-800' : 'hover:bg-gray-50'}`}>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="flex items-center">
-                      <div className="flex-shrink-0 h-10 w-10">
-                        <div className={`h-10 w-10 rounded-full flex items-center justify-center ${isDark ? 'bg-gray-800' : 'bg-gray-200'}`}>
-                          <User className={`h-5 w-5 ${isDark ? 'text-gray-400' : 'text-gray-500'}`} />
-                        </div>
-                      </div>
-                      <div className="ml-4">
-                        <div className={`text-sm font-medium ${isDark ? 'text-white' : 'text-gray-900'}`}>
-                          {user.name}
-                        </div>
-                        <div className={`text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                          {user.email}
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <RoleBadge role={user.role} />
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <StatusBadge status={user.status} />
-                  </td>
-                  <td className={`px-6 py-4 whitespace-nowrap text-sm ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
-                    {user.lastLogin}
-                  </td>
-                  <td className={`px-6 py-4 whitespace-nowrap text-sm`}>
-                    <div className="flex space-x-2">
-                      <Button
-                        label="Edit"
-                        variant="secondary"
-                        onClick={() => handleEdit(user)}
-                      />
-                      <Button
-                        label="Delete"
-                        variant="danger"
-                        onClick={() => handleDelete(user)}
-                      />
-                    </div>
-                  </td>
-                </tr>
+        <h1 className={`text-xl font-semibold ${isDark ? 'text-white' : 'text-gray-800'}`}>Users</h1>
+        <Button className="" size="sm" label="Add User" onClick={() => {}} />
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full">
+          <thead className={`border-b ${isDark ? 'bg-primarycolor-800 border-gray-700' : 'bg-gray-100 border-gray-200'}`}> 
+            <tr>
+              {columns.map((col, idx) => (
+                <th key={idx} className={col.className}>{col.label}</th>
               ))}
-            </tbody>
-          </table>
-        </div>
+            </tr>
+          </thead>
+          <tbody className={`${isDark ? 'bg-primarycolor-800 divide-gray-800' : 'bg-white divide-gray-200'} divide-y`}>
+            {users.map(renderRow)}
+          </tbody>
+        </table>
       </div>
     </div>
   );
